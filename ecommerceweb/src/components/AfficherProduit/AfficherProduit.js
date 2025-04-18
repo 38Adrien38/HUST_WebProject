@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../../services/api';
 
-function App() {
+function AfficherProduit() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -22,7 +22,10 @@ function App() {
             <h1>Product List</h1>
             <ul>
                 {products.map((product) => (
-                    <p> Nom du produit: {product.nom} </p>
+                    <li key={product.id}>
+                        <p> Nom du produit: {product.nom} </p>
+                    </li>
+
 
                 ))}
             </ul>
@@ -30,4 +33,4 @@ function App() {
     );
 }
 
-export default App;
+export default AfficherProduit;

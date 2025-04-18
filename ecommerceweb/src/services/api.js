@@ -8,7 +8,9 @@ const API_GESTIONCLIENT = 'http://localhost:5221/api/gestion/client'; // Replace
 
 // Produits API
 export const getProducts = () => axios.get(API_PRODUCT);
-export const getProductById = (id) => axios.get(`${API_PRODUCT}/${id}`);
+export function getProductById(id) {
+    return axios.get(`${API_PRODUCT}/${id}`);
+}
 export const createProduct = (product) => axios.post(API_PRODUCT, product);
 export const updateProduct = (id, updatedProduct) =>
     axios.put(`${API_PRODUCT}/${id}`, updatedProduct);
