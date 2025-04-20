@@ -1,29 +1,43 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// The aim of this is to add API controllers to the application
+// Add services to the container
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-// You as a developer can use Swagger to interact with the API through a web interface
+// Swagger setup
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add the database context to the application
-// This will allow the application to interact with the database
+// Database context
 builder.Services.AddDbContext<ECommerceContext>();
+
+// CORS setup
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // <-- Your React dev server
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
+// Seed database
 SeedData.Init();
 
-// Configure the HTTP request pipeline.
+// Development tools
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Enable HTTPS redirection
 app.UseHttpsRedirection();
+
+// Enable CORS (must come before `UseAuthorization`, if you add auth)
+app.UseCors("ReactPolicy");
+
 app.MapControllers();
 app.Run();
