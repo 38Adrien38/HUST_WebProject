@@ -4,10 +4,10 @@ import Tendance from '../components/Tendance';
 import Categorie from '../components/Categorie';
 
 
-function Home({ setPage, setId, setSelectedCategory }) {
+function Home({ setPage, setId }) {
     return (
         <div className="Home">
-            <NavBar setPage={setPage} setSelectedCategory={setSelectedCategory} />
+            <NavBar setPage={setPage} setId={setId} />
             <h1>Home Page</h1>
             <p>Site banner or image here</p>
             <Tendance setPage={setPage} setId={setId} />

@@ -25,7 +25,7 @@ function ProduitCategorie({ id, setPage, setId, setSelectedCategory }) {
 
     return (
         <div>
-            <NavBar setPage={setPage} setSelectedCategory={setSelectedCategory} />
+            <NavBar setPage={setPage} setId={setId} />
 
             <div className="produit-categorie-container">
                 <h1>Products in category: {id}</h1>

@@ -3,11 +3,11 @@ import NavBar from '../components/NavBar';
 
 
 
-function Panier({ setPage, setSelectedCategory }) {
+function Panier({ setPage, setId }) {
     return (
         <div className="Panier">
             <h1>Page panier</h1>
-            <NavBar setPage={setPage} setSelectedCategory={setSelectedCategory} />
+            <NavBar setPage={setPage} setId={setId} />
         </div>
     );
 }

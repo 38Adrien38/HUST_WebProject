@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import './CategorieDropdown.css'; // Import your CSS file for styling
 
-
-function CategorieDropdown({ setPage, setSelectedCategory }) {
+function CategorieDropdown({ setPage, setId }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const categories = [
@@ -14,9 +14,9 @@ function CategorieDropdown({ setPage, setSelectedCategory }) {
     ];
 
     const handleClick = (categoryName) => {
-        setSelectedCategory(categoryName);
-        setPage('produitCategorie');
-        setIsOpen(false); // close dropdown after click
+        setId(categoryName); // sets the category name as ID
+        setPage('produitCategorie'); // go to category product page
+        setIsOpen(false); // close the dropdown
     };
 
     return (
