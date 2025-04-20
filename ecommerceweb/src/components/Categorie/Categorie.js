@@ -3,12 +3,12 @@ import './Categorie.css';
 
 function Categorie({ setPage, setSelectedCategory }) {
     const categories = [
-        { name: "Furnitures", image: "./carrefour.jpg" },
-        { name: "Sport", image: "./carrefour.jpg" },
-        { name: "Clothes", image: "./carrefour.jpg" },
-        { name: "Mobiles", image: "./carrefour.jpg" },
-        { name: "Computer", image: "./carrefour.jpg" },
-        { name: "Beauty", image: "./carrefour.jpg" },
+        { name: "Furnitures", image: "./images/Furnitures.jpg" },
+        { name: "Sport", image: "./images/Sport.jpg" },
+        { name: "Clothes", image: "./images/Clothes.jpg" },
+        { name: "Mobiles", image: "./images/Mobiles.jpg" },
+        { name: "Computer", image: "./images/Computer.jpg" },
+        { name: "Beauty", image: "./images/Beauty.jpg" },
     ];
 
     const handleClick = (categoryName) => {

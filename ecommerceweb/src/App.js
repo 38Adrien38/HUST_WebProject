@@ -10,17 +10,18 @@ import ProduitCategorie from './pages/ProduitCategorie';
 
 function App() {
   const [page, setPage] = useState('home');
-  const [id, setId] = useState(''); // This will store the category name
+  const [id, setId] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   return (
     <div className="App">
-      {page === 'home' && <Home setPage={setPage} setId={setId} />}
-      {page === 'connexion' && <Connexion setPage={setPage} />}
-      {page === 'creerCompte' && <CreerCompte setPage={setPage} />}
-      {page === 'produit' && <Produit setPage={setPage} id={id} />}
-      {page === 'panier' && <Panier setPage={setPage} />}
+      {page === 'home' && <Home setPage={setPage} setId={setId} setSelectedCategory={setSelectedCategory} />}
+      {page === 'connexion' && <Connexion setPage={setPage} setSelectedCategory={setSelectedCategory} />}
+      {page === 'creerCompte' && <CreerCompte setPage={setPage} setSelectedCategory={setSelectedCategory} />}
+      {page === 'produit' && <Produit setPage={setPage} id={id} setSelectedCategory={setSelectedCategory} />}
+      {page === 'panier' && <Panier setPage={setPage} setSelectedCategory={setSelectedCategory} />}
       {page === 'produitCategorie' && (
-        <ProduitCategorie setPage={setPage} id={id} setId={setId} />
+        <ProduitCategorie setPage={setPage} id={id} setId={setId} setSelectedCategory={setSelectedCategory} />
       )}
     </div>
   );

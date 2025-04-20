@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getProductById } from '../services/api';
 import NavBar from '../components/NavBar';
 
-function Produit({ setPage, id }) {
+function Produit({ setPage, id, setSelectedCategory }) {
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function Produit({ setPage, id }) {
 
     return (
         <div className="produit-page">
-            <NavBar setPage={setPage} />
+            <NavBar setPage={setPage} setSelectedCategory={setSelectedCategory} />
 
             <div className="produit-details">
 

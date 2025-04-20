@@ -3,7 +3,7 @@ import { getProducts } from '../services/api';
 import NavBar from '../components/NavBar';
 
 
-function ProduitCategorie({ id, setPage, setId }) {
+function ProduitCategorie({ id, setPage, setId, setSelectedCategory }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function ProduitCategorie({ id, setPage, setId }) {
 
     return (
         <div>
-            <NavBar setPage={setPage} />
+            <NavBar setPage={setPage} setSelectedCategory={setSelectedCategory} />
 
             <div className="produit-categorie-container">
                 <h1>Products in category: {id}</h1>

@@ -1,10 +1,10 @@
 import React from 'react';
 import NavBar from '../components/NavBar'
 
-function Connexion({ setPage }) {
+function Connexion({ setPage, setSelectedCategory }) {
     return (
         <div className="Connexion">
-            <NavBar setPage={setPage} />
+            <NavBar setPage={setPage} setSelectedCategory={setSelectedCategory} />
             <h1>Page Connexion</h1>
         </div>
     );
