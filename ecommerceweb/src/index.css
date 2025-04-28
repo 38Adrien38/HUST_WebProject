@@ -1,25 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-
+/* Reset de base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body principal */
 body {
-
-  font-family: 'Segoe UI', 'Unbuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: Flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+  background-color: #ffffff;
   color: #2c3e50;
 }
 
-
+/* Code */
 code {
-  font-family: source-c
+  font-family: 'Source Code Pro', monospace;
 }

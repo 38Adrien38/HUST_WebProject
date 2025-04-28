@@ -1,0 +1,55 @@
+.tendance-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .tendance-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 220px;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .tendance-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tendance-item p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+  
+  .tendance-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Responsive pour petits écrans */
+  @media (max-width: 768px) {
+    .tendance-list {
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .tendance-item {
+      width: 160px;
+      padding: 0.8rem;
+    }
+    .tendance-item img {
+      height: 120px;
+    }
+  }
+  

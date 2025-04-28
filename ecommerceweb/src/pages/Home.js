@@ -8,8 +8,7 @@ function Home({ setPage, setId }) {
     return (
         <div className="Home">
             <NavBar setPage={setPage} setId={setId} />
-            <h1>Home Page</h1>
-            <p>Site banner or image here</p>
+            <img src="./banner.jpg" alt="Bannière eShop" className="home-banner" />
             <Tendance setPage={setPage} setId={setId} />
             <Categorie setPage={setPage} setSelectedCategory={setId} />
         </div>

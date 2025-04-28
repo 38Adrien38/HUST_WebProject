@@ -1,0 +1,25 @@
+.navlink {
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .navlink:hover {
+    color: #66a3ff; /* Bleu clair au survol */
+    transform: scale(1.05); /* Petit effet d'agrandissement */
+  }
+  
+  .navlink:active {
+    color: #3399ff; /* Encore plus foncé si cliqué */
+    transform: scale(0.95); /* Légère réduction */
+  }
+  
+  /* Responsive (optionnel car p est déjà petit) */
+  @media (max-width: 768px) {
+    .navlink {
+      font-size: 1rem; /* Tu peux même réduire à 0.9rem si besoin */
+    }
+  }
+  
