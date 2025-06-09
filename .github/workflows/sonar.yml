@@ -28,8 +28,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Nécessaire pour l'intégration GitHub
         with:
           args: >
-            -Dsonar.projectKey=MON_PROJET_KEY
-            -Dsonar.organization=MON_ORGANISATION
+            -Dsonar.projectKey=HUST_WebProject
+            -Dsonar.organization=camilleee-collab
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.projectVersion=1.0
             -Dsonar.sourceEncoding=UTF-8
