@@ -5,6 +5,7 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   sonarqube:
     name: SonarQube
@@ -12,8 +13,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0  # Important pour une analyse complète
+          
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Nécessaire pour l'intégration GitHub
+        with:
+          # Configuration obligatoire
+          sonarprojectkey: ${{ vars.SONAR_PROJECT_KEY }}  # À remplacer par votre clé
+          sonarorganization: ${{ vars.SONAR_ORG }}        # À remplacer par votre org
+          
+          # Configuration recommandée
+          args: >
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.projectVersion=1.0
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.verbose=true
