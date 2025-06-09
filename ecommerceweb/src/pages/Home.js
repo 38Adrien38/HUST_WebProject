@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import Tendance from '../components/Tendance';
 import Categorie from '../components/Categorie';
+import './Home.css';
 
 
 function Home({ setPage, setId }) {

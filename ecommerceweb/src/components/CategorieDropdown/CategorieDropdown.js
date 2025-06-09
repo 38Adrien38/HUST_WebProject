@@ -14,9 +14,9 @@ function CategorieDropdown({ setPage, setId }) {
     ];
 
     const handleClick = (categoryName) => {
-        setId(categoryName); // sets the category name as ID
-        setPage('produitCategorie'); // go to category product page
-        setIsOpen(false); // close the dropdown
+        setId(categoryName);
+        setPage('produitCategorie');
+        setIsOpen(false);
     };
 
     return (
@@ -25,7 +25,7 @@ function CategorieDropdown({ setPage, setId }) {
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
         >
-            <p className="categorie-dropdown-button">Catégorie</p>
+            <p className="categorie-dropdown-button">Category</p>
             {isOpen && (
                 <div className="categorie-dropdown-menu">
                     {categories.map((category) => (

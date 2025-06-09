@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../services/api';
 import NavBar from '../components/NavBar';
+import './ProduitCategorie.css';
 
 
 function ProduitCategorie({ id, setPage, setId, setSelectedCategory }) {
@@ -9,18 +10,19 @@ function ProduitCategorie({ id, setPage, setId, setSelectedCategory }) {
     useEffect(() => {
         getProducts()
             .then((res) => {
-                const filtered = res.data.filter(
-                    (product) => product.categorie === id
-                );
-                setProducts(filtered);
+            const filtered = res.data.filter(
+                (product) => product.categorie === id
+            );
+            setProducts(filtered);
             })
             .catch((err) => console.error(err));
-    }, [id]);
+        }, [id]);
+
 
     const handleProductClick = (productId) => {
-        setId(productId); // store the product ID
-        console.log(productId); // log the product ID
-        setPage('produit'); // navigate to product detail page
+        setId(productId);
+        console.log(productId);
+        setPage('produit');
     };
 
     return (

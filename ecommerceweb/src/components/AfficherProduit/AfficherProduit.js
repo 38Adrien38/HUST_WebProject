@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../../services/api';
-import './AfficherProduit.css'; // Ajoute l'import
+import './AfficherProduit.css';
 
 function AfficherProduit() {
     const [products, setProducts] = useState([]);
@@ -21,7 +21,7 @@ function AfficherProduit() {
             <ul className="afficher-produit-list">
                 {products.map((product) => (
                     <li key={product.id} className="afficher-produit-item">
-                        <p>Nom du produit : {product.nom}</p>
+                        <p>Name of the product : {product.nom}</p>
                     </li>
                 ))}
             </ul>

@@ -11,8 +11,6 @@ function NavBar({ setPage, setId }) {
         if (e.key === 'Enter' && searchInput.trim() !== '') {
             try {
                 const result = await getProducts();
-
-                // Extract products array safely
                 const products = Array.isArray(result)
                     ? result
                     : Array.isArray(result.data)
@@ -27,10 +25,10 @@ function NavBar({ setPage, setId }) {
                     setId(matched.id);
                     setPage('produit');
                 } else {
-                    alert('Aucun produit trouvé');
+                    alert('No product found');
                 }
             } catch (error) {
-                console.error('Erreur lors de la recherche:', error);
+                console.error('Error during the research:', error);
             }
         }
     };
@@ -43,14 +41,14 @@ function NavBar({ setPage, setId }) {
             <CategorieDropdown setPage={setPage} setId={setId} />
             <input
                 type="text"
-                placeholder="Rechercher un produit..."
+                placeholder="Search a product..."
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 onKeyDown={handleSearch}
                 className="search-input"
             />
             <NavLink onClick={() => setPage('connexion')} text="Connexion" />
-            <NavLink onClick={() => setPage('panier')} text="Panier" />
+            <NavLink onClick={() => setPage('panier')} text="Cart" />
         </nav>
     );
 }
