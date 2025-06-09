@@ -1,0 +1,6 @@
+# Format : RuleID    Action    Note
+10010    IGNORE    Faux positifs CSS/JS
+10011    IGNORE    Cookies sans Secure Flag (en dev)
+10023    WARN      En-têtes CSP manquants
+40012    IGNORE    Contenu mixte (acceptable en localhost)
+50000    IGNORE    Framework exposé (React/Express)
