@@ -6,73 +6,91 @@ on:
     branches: [main]
 
 jobs:
-  zap-scan:
+  security-scan:
     runs-on: ubuntu-latest
-    services:
-      webapp:
-        image: node:18  # Remplacez par votre image d'application
-        ports:
-          - "3000:3000"
-        env:
-          NODE_ENV: production
-        # Optionnel : commande pour démarrer votre app
-        options: >-
-          --health-cmd "curl -f http://localhost:3000 || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
+    timeout-minutes: 30  # Augmentez si nécessaire pour les gros projets
+    
     steps:
       - uses: actions/checkout@v4
-
-      - name: Wait for app
+      
+      # 1. Configuration de l'environnement Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      # 2. Installation des dépendances
+      - name: Install dependencies
         run: |
+          npm ci
+          npm install -g @angular/cli  # Si vous utilisez Angular
+          
+      # 3. Build et démarrage de l'application
+      - name: Build and start application
+        run: |
+          npm run build --if-present
+          npm start &  # Lance en arrière-plan
+          sleep 10  # Temps d'attente initial
+          
+          # Attente active avec vérification
           for i in {1..10}; do
             if curl -s http://localhost:3000 >/dev/null; then
-              echo "App is ready!"
+              echo "Application démarrée avec succès"
               exit 0
             fi
             sleep 5
           done
-          echo "App failed to start"
+          echo "Échec du démarrage de l'application"
           exit 1
-
-      - name: ZAP Scan
+          
+      # 4. Scan ZAP
+      - name: OWASP ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'http://localhost:3000'
           rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-t 60 -m 120'  # Timeout augmenté
-          docker_network: 'bridge'
-
-      - name: Upload ZAP Report
-        uses: actions/upload-artifact@v4  # Version mise à jour
-        with:
-          name: zap-security-report
-          path: |
-            zap-report.html
-            zap-report.json
-          retention-days: 3
-
-  nikto-scan:
-    needs: zap-scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
+          cmd_options: '-t 60 -m 120 -J report.json -r report.html'
+          
+      # 5. Scan Nikto
       - name: Nikto Scan
         run: |
           docker run --rm \
             -v "$(pwd):/tmp" \
+            -w /tmp \
             sullo/nikto \
             -h http://localhost:3000 \
-            -o /tmp/nikto-report.html \
+            -o ./nikto-report.html \
             -Format htm
         continue-on-error: true
-
-      - name: Upload Nikto Report
+          
+      # 6. Upload des rapports
+      - name: Upload security reports
         uses: actions/upload-artifact@v4
         with:
-          name: nikto-security-report
-          path: nikto-report.html
+          name: security-reports-${{ github.run_number }}
+          path: |
+            report.html
+            report.json
+            nikto-report.html
+          retention-days: 7
           compression-level: 9
+          
+      # 7. Notification (optionnelle)
+      - name: Notify Slack
+        if: always()
+        uses: slackapi/slack-github-action@v1.24.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        with:
+          payload: |
+            {
+              "text": "Scan de sécurité terminé pour ${{ github.repository }}",
+              "attachments": [
+                {
+                  "title": "Rapports disponibles",
+                  "title_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+                  "color": "#36a64f"
+                }
+              ]
+            }
