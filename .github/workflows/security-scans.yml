@@ -1,62 +1,41 @@
 name: Security Scans
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 0 * * 1' # Exécution hebdomadaire le lundi
+on: [push, pull_request]
 
 jobs:
   zap-scan:
     runs-on: ubuntu-latest
-    services:
-      webapp:
-        image: your-webapp-image # Remplacez par votre image
-        ports:
-          - "3000:3000" # Port exposé par votre application
-
     steps:
       - uses: actions/checkout@v4
       
-      # Attendre que l'application soit disponible
-      - name: Wait for app
-        run: |
-          while ! curl -s http://localhost:3000 >/dev/null; do
-            sleep 5
-          done
-      
-      # Scan ZAP
-      - name: OWASP ZAP Scan
+      - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
-          target: 'http://webapp:3000' # Utilise le service Docker
+          target: 'http://localhost:3000'
           rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-t 10 -m 60'
         
-      # Upload des résultats
+      # Nouvelle version de upload-artifact
       - name: Upload ZAP Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: zap-report
           path: zap-report.html
+          retention-days: 3  # Optionnel: conserve 3 jours
 
   nikto-scan:
-    needs: zap-scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
       - name: Nikto Scan
         run: |
-          docker run --network host --rm sullo/nikto \
+          docker run --rm sullo/nikto \
             -h http://localhost:3000 \
             -o ./nikto-report.xml \
             -Format xml
         continue-on-error: true
         
       - name: Upload Nikto Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Version mise à jour
         with:
           name: nikto-report
           path: ./nikto-report.xml
