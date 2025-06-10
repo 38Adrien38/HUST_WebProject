@@ -23,7 +23,7 @@ public static class SeedData
             Prenom = "Camille",
             Adresse = "4 rue de la paix, Paris",
             Mail = "camille.govaere@gmail.com",
-            Password = "123456"
+            Password = "123Camilletravaille!"
         };
         Client c3 = new()
         {
