@@ -160,7 +160,7 @@ function Connexion({ setUser, setPage, setId }) {
               </form>
 
               <div className="connexion-links">
-                <p>Don't have an account? <span onClick={() => setPage('register')}>Register</span></p>
+                <p>Don't have an account? <span onClick={() => setPage('creerCompte')}>Register</span></p>
                 <p>Forgot password? <span onClick={() => setShowRecovery(true)}>Reset password</span></p>
               </div>
             </>

@@ -3,7 +3,7 @@ import React, { useState } from 'react'; // Ajoutez useState ici
 import './App.css';
 import Home from './pages/Home';
 import Connexion from './pages/Connexion';
-import CreerCompte from './pages/CreerCompte';
+import FormulaireConnexion from './pages/FormulaireConnexion.js';
 import Produit from './pages/Produit';
 import Panier from './pages/Panier';
 import ProduitCategorie from './pages/ProduitCategorie';
@@ -18,7 +18,7 @@ function App() {
       <div className="App">
         {page === 'home' && <Home setPage={setPage} setId={setId} setSelectedCategory={setSelectedCategory} />}
         {page === 'connexion' && <Connexion setPage={setPage} setId={setId} setSelectedCategory={setSelectedCategory} />}
-        {page === 'creerCompte' && <CreerCompte setPage={setPage} setId={setId} setSelectedCategory={setSelectedCategory} />}
+        {page === 'creerCompte' && <FormulaireConnexion setPage={setPage} setId={setId} setSelectedCategory={setSelectedCategory} />}
         {page === 'produit' && <Produit setPage={setPage} id={id} setId={setId} setSelectedCategory={setSelectedCategory} />}
         {page === 'panier' && <Panier setPage={setPage} setId={setId} setSelectedCategory={setSelectedCategory} />}
         {page === 'produitCategorie' && (
