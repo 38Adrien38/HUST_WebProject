@@ -1,10 +1,10 @@
 // src/services/api.js
 import axios from 'axios';
 
-const API_PRODUCT = 'http://localhost:5221/api/produit'; // Replace with your API endpoint
-const API_CLIENT = 'http://localhost:5221/api/client'; // Replace with your API endpoint
-const API_COMMANDE = 'http://localhost:5221/api/commande'; // Replace with your API endpoint
-const API_GESTIONCLIENT = 'http://localhost:5221/api/gestion/client'; // Replace with your API endpoint
+const API_PRODUCT = 'https://localhost:7149/api/produit'; // Replace with your API endpoint
+const API_CLIENT = 'https://localhost:7149/api/client'; // Replace with your API endpoint
+const API_COMMANDE = 'https://localhost:7149/api/commande'; // Replace with your API endpoint
+const API_GESTIONCLIENT = 'https://localhost:7149/api/gestion/client'; // Replace with your API endpoint
 
 // Produits API
 export const getProducts = () => axios.get(API_PRODUCT);

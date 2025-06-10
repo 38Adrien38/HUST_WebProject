@@ -15,10 +15,16 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // <-- Your React dev server
+        policy.WithOrigins("http://localhost:3000",
+                            "https://localhost:3000") // <-- Your React dev server
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
+});
+
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.HttpsPort = 7149;
 });
 
 var app = builder.Build();
