@@ -29,7 +29,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=38Adrien38_HUST_WebProject
-            -Dsonar.organization=38Adrien38
+            -Dsonar.organization=Adrien Delaye
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.projectVersion=1.0
             -Dsonar.sourceEncoding=UTF-8
